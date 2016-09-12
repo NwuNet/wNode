@@ -101,6 +101,18 @@
         right: 0px;
         bottom: 0px;
       }
+      #mask{
+        display: none;
+        position: absolute;
+        top: 35px;
+        left: 80px;
+        bottom: 0px;
+        right: 0px;
+        z-index: 1001;
+        opacity: .3;
+        background: #1ABC9C url('lib/svg/loading.svg') no-repeat fixed center;
+        background-size: 100px;
+      }
     </style>
     <script>
       function nav1click(){
@@ -164,7 +176,8 @@
           </div>
         </header>
         <section>
-          <webview id="webcontent"></div>
+          <div id="mask"></div>
+          <webview id="webcontent" allowpopups></div>
         </section>
       </div>
     </div>
