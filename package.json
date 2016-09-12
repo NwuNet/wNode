@@ -13,7 +13,7 @@
   "keywords": [
     "校园网",
     "网页认证",
-    "浏览流量查询",
+    "流量查询",
     "接入服务"
   ],
   "author": "NwuNet",
@@ -27,6 +27,14 @@
     "electron-packager": "^8.0.0"
   },
   "dependencies": {
-    "electron": "^1.3.5"
+    "electron": "^1.3.5",
+    "boostrap": "^3.3.0"
+  },
+  "build": {
+    "appId": "howie20160910",
+    "category": "cross application",
+    "win": {
+      "iconUrl": "http://115.29.55.23/wicon.ico"
+    }
   }
 }

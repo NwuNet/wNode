@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>校园网接入服务</title>
+    <link rel="stylesheet" type="text/css" href="lib/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.min.css">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body{
+        text-align: left;
+        color: #333;
+        font-family: -apple-system,BlinkMacSystemFont,Segoe WPC,Segoe UI,HelveticaNeue-Light,Noto Sans,Microsoft YaHei,PingFang SC,Hiragino Sans GB,Source Han Sans SC,Source Han Sans CN,Source Han Sans,sans-serif;
+      }
+      .content{
+        height: 100%;
+      }
+      .nav{
+        width: 80px;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        bottom: 0px;
+        background-color: #F8F8F8;
+        box-shadow: 3px 3px 3px #EEE;
+      }
+      .content{
+        width: 100%;
+        position: absolute;
+        left: 80px;
+        top: 0px;
+        bottom: 0px;
+      }
+      #nav-container{
+        display: inline-block;
+        margin: 0 auto;
+        width: 100%;
+        list-style-type: none;
+				text-align: center
+      }
+      .nav-item{
+        cursor: pointer;
+      }
+      .nav-label{
+        display: flex;
+        overflow: hidden;
+        height: 80px;
+        line-height: 80px;
+        box-sizing: border-box;
+        background-position: 0px;
+        background-repeat: no-repeat;
+        opacity: .6;
+        font-size: 50px;
+        color: #333;
+        text-decoration: none;
+        transition: font-size 0.2s;
+      }
+      .nav-label:hover{
+        font-size: 60px;
+      }
+      .nav-label i{
+        margin:0 auto;
+      }
+      .nav-label.active i.green{
+        font-size: 60px;
+        color: #00CC33;
+      }
+      .nav-label:hover i.green{
+        color: #00CC33;
+      }
+      .nav-label.active i.blue{
+        font-size: 60px;
+        color: #0066CC;
+      }
+      .nav-label:hover i.blue{
+        color: #0066CC;
+      }
+      .nav-label.active i.red{
+        font-size: 60px;
+        color: #CC0033;
+      }
+      .nav-label:hover i.red{
+        color: #CC0033;
+      }
+      .head{
+        margin: 0 auto;
+        text-align: center;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+      }
+      #webcontent{
+        display: inline-flex;
+        position: absolute;
+        top: 35px;
+        left: 80px;
+        right: 0px;
+        bottom: 0px;
+      }
+    </style>
+    <script>
+      function nav1click(){
+        document.getElementById('website').value = "http://10.0.1.250";
+        document.getElementById('webcontent').src = "http://10.0.1.250";
+        document.getElementById('nav1').setAttribute("class", "nav-label active");
+        document.getElementById('nav2').setAttribute("class", "nav-label");
+        document.getElementById('nav3').setAttribute("class", "nav-label");
+      }
+      function nav2click(){
+        document.getElementById('website').value = "http://172.28.16.20";
+        document.getElementById('webcontent').src = "http://172.28.16.20";
+        document.getElementById('nav1').setAttribute("class", "nav-label");
+        document.getElementById('nav2').setAttribute("class", "nav-label active");
+        document.getElementById('nav3').setAttribute("class", "nav-label");
+      }
+      function nav3click(){
+        document.getElementById('website').value = "http://my.nwu.edu.cn";
+        document.getElementById('webcontent').src = "http://my.nwu.edu.cn";
+        document.getElementById('nav1').setAttribute("class", "nav-label");
+        document.getElementById('nav2').setAttribute("class", "nav-label");
+        document.getElementById('nav3').setAttribute("class", "nav-label active");
+      }
+      function webgo(event){
+        if(event.keyCode == "13"){
+          var web = document.getElementById("website").value;
+          document.getElementById('webcontent').src = web;
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div>
+      <div>
+        <nav class="nav">
+          <ul id="nav-container" role="toolbar">
+            <li class="nav-item" role="presentation">
+              <a id="nav1" class="nav-label" role="button" onclick="nav1click()">
+                <i class="icon ion-cloud green"></i>
+              </a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a id="nav2" class="nav-label" role="button" onclick="nav2click()">
+                <i class="icon ion-android-alert red"></i>
+              </a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a id="nav3" class="nav-label" role="button" onclick="nav3click()">
+                <i class="icon ion-person blue"></i>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="container" style="padding: 0 0 0 85px">
+        <header>
+          <div>
+            <div class="form-group">
+              <input id="website" type="text" class="form-control" placeholder="请输入网址" onkeypress="webgo(event)">
+            </div>
+          </div>
+        </header>
+        <section>
+          <webview id="webcontent"></div>
+        </section>
+      </div>
+    </div>
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <script src="lib/bootstrap/js/jquery.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <script>if (window.module) module = window.module;</script>
+    <script>require('./index.js')</script>
+  </body>
+</html>
