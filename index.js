@@ -13,6 +13,15 @@ webview.addEventListener('load-commit', () => {
 webview.addEventListener('did-frame-finish-load', () => {
     document.getElementById("mask").style.display = "none";
 })
+webview.addEventListener('dom-ready', () => {
+    document.getElementById("mask").style.display = "none";
+})
+webview.addEventListener('did-finish-load', () => {
+    document.getElementById("mask").style.display = "none";
+})
+webview.addEventListener('did-stop-loading', () => {
+    document.getElementById("mask").style.display = "none";
+})
 webview.addEventListener('new-window', (e) => {
     window.open(e.url);
 })

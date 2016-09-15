@@ -1,8 +1,8 @@
-const {app, BrowserWindow, Menu, dialog} = require('electron')
+const {app, BrowserWindow, Menu, dialog, ipcMain} = require('electron')
 
 let mainWindow
 function createWindow(){
-    mainWindow = new BrowserWindow({width:800, height: 600})
+    mainWindow = new BrowserWindow({width:800, height: 600, frame: false})
     mainWindow.loadURL(`file://${__dirname}/index.html`)
     let contents = mainWindow.webContents
     // contents.openDevTools()
@@ -13,6 +13,20 @@ function createWindow(){
 
     contents.on('did-finish-load',()=>{
         contents.send('nwulogin','http://115.29.55.23/thinkphp')
+    })
+
+    ipcMain.on('winclose', (e) => {
+        mainWindow.close();
+    })
+    ipcMain.on('winchange', (e) => {
+        if(mainWindow.isMaximized()){
+            mainWindow.unmaximize();
+        }else{
+            mainWindow.maximize();
+        }
+    })
+    ipcMain.on('winmin', (e) => {
+        mainWindow.minimize();
     })
 }
 

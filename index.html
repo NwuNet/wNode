@@ -111,8 +111,9 @@
       left: 0px;
       right: 0px;
     }
-
-    header .btn,header .btn-group{
+    
+    header .btn,
+    header .btn-group {
       vertical-align: top !important;
     }
     
@@ -218,6 +219,18 @@
       var web = document.getElementById("website").value;
       document.getElementById('webcontent').src = web;
     }
+    function winclose(){
+      const {ipcRenderer} = require('electron');
+      ipcRenderer.send('winclose');
+    }
+    function winchange(){
+      const {ipcRenderer} = require('electron');
+      ipcRenderer.send('winchange');
+    }
+    function winmin(){
+      const {ipcRenderer} = require('electron');
+      ipcRenderer.send('winmin');
+    }
   </script>
 </head>
 
@@ -253,15 +266,32 @@
       <header>
         <div class="toolbox">
           <div class="btn-group">
-            <button id="wback" type="button" class="btn btn-default" onclick="webback()"><i class="icon ion-ios-arrow-back"></i></button>
-            <button id="wforward" type="button" class="btn btn-default" onclick="webforward()"><i class="icon ion-ios-arrow-forward"></i></button>
-            <button id="wreload" type="button" class="btn btn-default" onclick="webreload()"><i class="icon ion-ios-loop-strong"></i></button>
+            <button id="wback" type="button" class="btn btn-default" onclick="webback()" title="后退">
+              <i class="icon ion-ios-arrow-back"></i>
+            </button>
+            <button id="wforward" type="button" class="btn btn-default" onclick="webforward()" title="前进">
+              <i class="icon ion-ios-arrow-forward"></i>
+            </button>
+            <button id="wreload" type="button" class="btn btn-default" onclick="webreload()" title="刷新">
+              <i class="icon ion-android-refresh"></i>
+            </button>
           </div>
+          <span>&nbsp;</span>
           <input id="website" type="text" placeholder="请输入网址" onkeypress="webgo(event)">
-          <button type="button" class="btn btn-default" onclick="webclose()">Go</button>
+          <button type="button" class="btn btn-primary" onclick="webclose()">Go</button>
         </div>
         <div class="win">
-          
+          <div class="btn-group">
+            <button type="button" class="btn btn-default" onclick="winmin()" title="最小化">
+              <i class="ion ion-android-remove"></i>
+            </button>
+              <button type="button" class="btn btn-default" onclick="winchange()" title="调整窗口">
+              <i class="ion ion-android-open"></i>
+            </button>
+              <button type="button" class="btn btn-danger" onclick="winclose()" title="关闭">
+              <i class="ion ion-android-close"></i>
+            </button>
+          </div>
         </div>
       </header>
       <section>
