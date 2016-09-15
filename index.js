@@ -7,9 +7,12 @@
 nav1click()
 
 var webview = document.getElementById('webcontent')
-webview.addEventListener('did-start-loading', ()=>{
-    document.getElementById("mask").style.display ="block";
+webview.addEventListener('load-commit', () => {
+    document.getElementById("mask").style.display = "block";
 })
-webview.addEventListener('did-stop-loading',()=>{
-    document.getElementById("mask").style.display ="none";
+webview.addEventListener('did-frame-finish-load', () => {
+    document.getElementById("mask").style.display = "none";
+})
+webview.addEventListener('new-window', (e) => {
+    window.open(e.url);
 })
