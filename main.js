@@ -15,18 +15,32 @@ function createWindow(){
         contents.send('nwulogin','http://115.29.55.23/thinkphp')
     })
 
-    ipcMain.on('winclose', (e) => {
+    ipcMain.on('win-close', (e) => {
         mainWindow.close();
     })
-    ipcMain.on('winchange', (e) => {
+    ipcMain.on('win-change', (e) => {
         if(mainWindow.isMaximized()){
             mainWindow.unmaximize();
         }else{
             mainWindow.maximize();
         }
     })
-    ipcMain.on('winmin', (e) => {
+    ipcMain.on('win-min', (e) => {
         mainWindow.minimize();
+    })
+    ipcMain.on('focused-close', (e)=>{
+        BrowserWindow.getFocusedWindow().close();
+    })
+    ipcMain.on('focused-change', (e)=>{
+        let sub = BrowserWindow.getFocusedWindow(); 
+        if(sub.isMaximized()){
+            sub.unmaximize();
+        }else{
+            sub.maximize();
+        }
+    })
+    ipcMain.on('focused-min', (e)=>{
+        BrowserWindow.getFocusedWindow().minimize();
     })
 }
 
@@ -54,6 +68,19 @@ const template = [
                 accelerator: 'CmdOrCtrl+R',
                 click(item, foucusdWindow){
                     if(foucusdWindow) foucusdWindow.reload()
+                }
+            },
+            {
+                label: '全屏', 
+                accelerator: 'F11',
+                click(item, foucusdWindow){
+                    if(foucusdWindow){
+                        if(foucusdWindow.isFullScreen()){
+                            foucusdWindow.setFullScreen(false);
+                        }else{
+                            foucusdWindow.setFullScreen(true);
+                        }
+                    }
                 }
             },
             {

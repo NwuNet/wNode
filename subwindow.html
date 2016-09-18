@@ -121,7 +121,7 @@
       display: inline-flex;
       position: absolute;
       top: 37px;
-      left: 80px;
+      left: 0px;
       right: 0px;
       bottom: 0px;
     }
@@ -130,7 +130,7 @@
       display: none;
       position: absolute;
       top: 35px;
-      left: 80px;
+      left: 0px;
       bottom: 0px;
       right: 0px;
       z-index: 1001;
@@ -164,38 +164,6 @@
     }
   </style>
   <script>
-    function nav1click() {
-      document.getElementById('website').value = "http://10.0.1.250";
-      document.getElementById('webcontent').src = "http://10.0.1.250";
-      document.getElementById('nav1').setAttribute("class", "nav-label active");
-      document.getElementById('nav2').setAttribute("class", "nav-label");
-      document.getElementById('nav3').setAttribute("class", "nav-label");
-      document.getElementById('nav4').setAttribute("class", "nav-label");
-    }
-    function nav2click() {
-      document.getElementById('website').value = "http://10.0.1.237";
-      document.getElementById('webcontent').src = "http://10.0.1.237";
-      document.getElementById('nav1').setAttribute("class", "nav-label");
-      document.getElementById('nav2').setAttribute("class", "nav-label active");
-      document.getElementById('nav3').setAttribute("class", "nav-label");
-      document.getElementById('nav4').setAttribute("class", "nav-label");
-    }
-    function nav3click() {
-      document.getElementById('website').value = "http://172.28.16.20";
-      document.getElementById('webcontent').src = "http://172.28.16.20";
-      document.getElementById('nav1').setAttribute("class", "nav-label");
-      document.getElementById('nav2').setAttribute("class", "nav-label");
-      document.getElementById('nav3').setAttribute("class", "nav-label active");
-      document.getElementById('nav4').setAttribute("class", "nav-label");
-    }
-    function nav4click() {
-      document.getElementById('website').value = "http://my.nwu.edu.cn";
-      document.getElementById('webcontent').src = "http://my.nwu.edu.cn";
-      document.getElementById('nav1').setAttribute("class", "nav-label");
-      document.getElementById('nav2').setAttribute("class", "nav-label");
-      document.getElementById('nav3').setAttribute("class", "nav-label");
-      document.getElementById('nav4').setAttribute("class", "nav-label active");
-    }
     function webgo(event) {
       if (event.keyCode == "13") {
         var web = document.getElementById("website").value;
@@ -221,48 +189,22 @@
     }
     function winclose(){
       const {ipcRenderer} = require('electron');
-      ipcRenderer.send('win-close');
+      ipcRenderer.send('focused-close');
     }
     function winchange(){
       const {ipcRenderer} = require('electron');
-      ipcRenderer.send('win-change');
+      ipcRenderer.send('focused-change');
     }
     function winmin(){
       const {ipcRenderer} = require('electron');
-      ipcRenderer.send('win-min');
+      ipcRenderer.send('focused-min');
     }
   </script>
 </head>
 
 <body>
   <div>
-    <div>
-      <nav class="nav">
-        <ul id="nav-container" role="toolbar">
-          <li class="nav-item" role="presentation">
-            <a id="nav1" class="nav-label" role="button" onclick="nav1click()" title="有线接入">
-              <i class="icon ion-cloud green"></i>
-            </a>
-          </li>
-          <li class="nav-item" role="presentation">
-            <a id="nav2" class="nav-label" role="button" onclick="nav2click()" title="无线接入">
-              <i class="icon ion-wifi green"></i>
-            </a>
-          </li>
-          <li class="nav-item" role="presentation">
-            <a id="nav3" class="nav-label" role="button" onclick="nav3click()" title="网络服务">
-              <i class="icon ion-android-alert red"></i>
-            </a>
-          </li>
-          <li class="nav-item" role="presentation">
-            <a id="nav4" class="nav-label" role="button" onclick="nav4click()" title="信息门户">
-              <i class="icon ion-person blue"></i>
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-    <div style="padding: 1px 0 0 85px">
+    <div style="padding: 1px 0 0 1px">
       <header>
         <div class="toolbox">
           <div class="btn-group">
@@ -308,7 +250,6 @@
   <script src="lib/bootstrap/js/jquery.min.js"></script>
   <script src="lib/bootstrap/js/bootstrap.min.js"></script>
   <script>if (window.module) module = window.module;</script>
-  <script>nav1click()</script>
   <script>require('./index.js')</script>
 </body>
 
