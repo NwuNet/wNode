@@ -23,11 +23,11 @@
   },
   "homepage": "https://github.com/NwuNet/wNode#readme",
   "devDependencies": {
-    "electron": "^1.3.4",
+    "electron": "^9.1.0",
     "electron-packager": "^8.0.0"
   },
   "dependencies": {
-    "electron": "^1.3.5",
+    "electron": "^9.1.0",
     "electron-json-storage": "^2.0.0"
   },
   "build": {
